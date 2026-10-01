@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block pagetitle %}Attack Overview{% endblock %}
+{% block content %}
+
+<section class="kpis">
+  <div class="kpi"><b id="kpi-total">0</b><span>Total events</span></div>
+  <div class="kpi"><b id="kpi-ips">0</b><span>Unique attacker IPs</span></div>
+  <div class="kpi"><b id="kpi-24h">0</b><span>Last 24 hours</span></div>
+  <div class="kpi"><b id="kpi-critical" class="danger">0</b><span>Critical events</span></div>
+  <div class="kpi"><b id="kpi-creds">0</b><span>Credential attempts</span></div>
+</section>
+
+<section class="grid-charts">
+  <div class="panel span-2">
+    <h3>Attack timeline (last 48 h)</h3>
+    <canvas id="chartTimeline" height="110"></canvas>
+  </div>
+  <div class="panel">
+    <h3>Severity distribution</h3>
+    <canvas id="chartSeverity" height="150"></canvas>
+  </div>
+  <div class="panel">
+    <h3>Service / protocol distribution</h3>
+    <canvas id="chartService" height="150"></canvas>
+  </div>
+  <div class="panel">
+    <h3>Top attacker IPs</h3>
+    <canvas id="chartTopIps" height="150"></canvas>
+  </div>
+  <div class="panel">
+    <h3>Attack patterns</h3>
+    <canvas id="chartPatterns" height="150"></canvas>
+  </div>
+</section>
+
+<section class="grid-2">
+  <div class="panel">
+    <h3>Live event feed</h3>
+    <table class="tbl">
+      <thead><tr><th>Time (UTC)</th><th>Source</th><th>Svc</th><th>Type</th><th>Severity</th></tr></thead>
+      <tbody id="recentBody"><tr><td colspan="5" class="empty">Loading&hellip;</td></tr></tbody>
+    </table>
+  </div>
+  <div class="panel" id="statusPanel">
+    <h3>Honeypot listeners</h3>
+    <table class="tbl">
+      <thead><tr><th>Service</th><th>Port</th><th>Status</th></tr></thead>
+      <tbody id="statusBody"><tr><td colspan="3" class="empty">
+        Dashboard-only mode (listeners not running).</td></tr></tbody>
+    </table>
+    <p class="hint" id="uptimeLine"></p>
+  </div>
+</section>
+
+{% endblock %}

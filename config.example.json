@@ -1,0 +1,20 @@
+{
+  "_comment": "Copy to config.json to override defaults. See README for all keys.",
+  "bind_host": "127.0.0.1",
+  "geo_lookup_enabled": false,
+  "services": {
+    "ssh": {
+      "enabled": true,
+      "port": 2222,
+      "accept_any_credentials": false
+    },
+    "http": { "enabled": true, "port": 8081 },
+    "ftp": { "enabled": true, "port": 2121 },
+    "telnet": { "enabled": true, "port": 2323 }
+  },
+  "sensor_ports": [
+    1433, 2375, 3000, 3306, 3389, 5000, 5432, 5900,
+    6379, 8000, 8009, 8443, 9000, 9042, 9200, 11211, 27017
+  ],
+  "brute_force_window_minutes": 10
+}

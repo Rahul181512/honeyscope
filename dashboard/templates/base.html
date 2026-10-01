@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ project_title }}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=101">
+  <script src="{{ url_for('static', filename='vendor/chart.umd.min.js') }}"></script>
+</head>
+<body data-page="{{ active_page }}">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-icon">&#127857;</div>
+    <div>
+      <div class="brand-name">{{ project_title }}</div>
+      <div class="brand-sub">Honeypot Attack Dashboard</div>
+    </div>
+  </div>
+  <nav>
+    {% set nav = [
+      ('overview', '/', 'Overview', '&#128200;'),
+      ('events', '/events', 'Events', '&#128220;'),
+      ('intel', '/intel', 'Attacker Intel', '&#127760;'),
+      ('credentials', '/credentials', 'Credentials', '&#128273;'),
+      ('report', '/report', 'Security Report', '&#128196;'),
+    ] %}
+    {% for key, href, label, icon in nav %}
+    <a href="{{ href }}" class="{{ 'active' if active_page == key }}">
+      <span class="nav-icon">{{ icon|safe }}</span>{{ label }}
+    </a>
+    {% endfor %}
+  </nav>
+  <div class="sidebar-foot">
+    Authorized lab use only.<br>All decoys are sandboxed &amp; read-only.
+  </div>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <h1>{% block pagetitle %}{% endblock %}</h1>
+    <div class="topbar-right">
+      <span id="dbTotal" class="chip">...</span>
+      <span id="liveDot" class="live-dot" title="auto-refreshing">&#9679; LIVE</span>
+    </div>
+  </header>
+  {% block content %}{% endblock %}
+  <footer class="page-foot">
+    {{ project_title }} v1.0.0 &middot; B.Tech Cyber Security project &middot;
+    data collected in an isolated lab environment only
+  </footer>
+</main>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" id="modalBox"></div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}?v=101"></script>
+</body>
+</html>

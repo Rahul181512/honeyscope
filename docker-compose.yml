@@ -1,0 +1,24 @@
+services:
+  honeyscope:
+    build: .
+    container_name: honeyscope
+    ports:
+      - "5555:5555"            # dashboard
+      - "2222:2222"            # SSH decoy
+      - "8081:8081"            # HTTP decoy (fake router login)
+      - "2121:2121"            # FTP decoy
+      - "2323:2323"            # Telnet decoy
+      - "1433"                 # TCP probe sensors
+      - "3306"
+      - "3389"
+      - "5432"
+      - "5900"
+      - "6379"
+      - "8000"
+      - "8443"
+      - "9200"
+    volumes:
+      - ./data:/app/data       # SQLite database
+      - ./logs:/app/logs       # raw JSONL audit trail
+      - ./reports/out:/app/reports/out
+    restart: unless-stopped

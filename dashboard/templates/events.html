@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block pagetitle %}Event Log{% endblock %}
+{% block content %}
+
+<section class="panel">
+  <form id="filterForm" class="filters" autocomplete="off">
+    <input type="search" id="fQ" placeholder="Search IP, username, payload&hellip;">
+    <select id="fSeverity"><option value="">All severities</option></select>
+    <select id="fService"><option value="">All services</option></select>
+    <select id="fPattern"><option value="">All patterns</option></select>
+    <select id="fPerPage">
+      <option>25</option><option selected>50</option><option>100</option><option>200</option>
+    </select>
+    <button type="submit">Apply filters</button>
+    <button type="button" id="resetFilters" class="ghost">Reset</button>
+  </form>
+
+  <table class="tbl rowlink">
+    <thead><tr>
+      <th>#</th><th>Time (UTC)</th><th>Source</th><th>&rarr; Port</th>
+      <th>Svc</th><th>Type</th><th>Username</th><th>Password</th>
+      <th>Pattern</th><th>Score</th><th>Severity</th>
+    </tr></thead>
+    <tbody id="eventsBody"><tr><td colspan="11" class="empty">Loading&hellip;</td></tr></tbody>
+  </table>
+
+  <div class="pager">
+    <button id="prevPage" class="ghost">&larr; Prev</button>
+    <span id="pageInfo">-</span>
+    <button id="nextPage" class="ghost">Next &rarr;</button>
+    <a class="chip" href="/api/export/events.csv">&#11015; CSV</a>
+    <a class="chip" href="/api/export/events.json">&#11015; JSON</a>
+    <button id="clearEvents" class="ghost danger-ghost">Clear all events</button>
+  </div>
+</section>
+
+{% endblock %}

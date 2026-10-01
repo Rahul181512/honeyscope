@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block pagetitle %}Attacker Intelligence{% endblock %}
+{% block content %}
+
+<section class="panel">
+  <h3>Source IP intelligence
+    <span class="hint-inline" id="geoNote"></span></h3>
+  <table class="tbl">
+    <thead><tr>
+      <th>IP address</th><th>Location</th><th>ASN</th><th>Events</th>
+      <th>Worst severity</th><th>First seen</th><th>Last seen</th><th></th>
+    </tr></thead>
+    <tbody id="intelBody"><tr><td colspan="8" class="empty">Loading&hellip;</td></tr></tbody>
+  </table>
+</section>
+
+{% endblock %}

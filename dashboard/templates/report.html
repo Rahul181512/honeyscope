@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block pagetitle %}Security Report{% endblock %}
+{% block content %}
+
+<section class="panel">
+  <h3>Automated security report generator</h3>
+  <p class="lead">
+    Generates a timestamped report summarising the observation window:
+    executive KPIs, attack timeline charts, top attacker IPs, most attempted
+    credentials, and rule-based defensive recommendations.
+    The HTML file is fully self-contained (Chart.js is embedded) and can be
+    submitted or printed to PDF directly.
+  </p>
+  <div class="btn-row">
+    <button id="genReport">Generate report now</button>
+    <a class="chip" href="/api/export/events.csv">Export all events (CSV)</a>
+    <a class="chip" href="/api/export/events.json">Export all events (JSON)</a>
+  </div>
+  <div id="reportResult" class="report-result" hidden></div>
+</section>
+
+<section class="grid-2">
+  <div class="panel">
+    <h3>What the report contains</h3>
+    <ul class="nice-list">
+      <li>Executive summary with key metrics</li>
+      <li>72-hour attack timeline chart</li>
+      <li>Severity / service / pattern distribution charts</li>
+      <li>Top attacker IPs with worst-severity classification</li>
+      <li>Most attempted usernames &amp; passwords</li>
+      <li>Defensive recommendations derived from observed patterns</li>
+      <li>Ethics &amp; scope statement for academic submission</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h3>Suggested viva workflow</h3>
+    <ol class="nice-list">
+      <li>Run <code>python run.py</code> and open the Overview page.</li>
+      <li>Trigger attacks: <code>python scripts/simulate_attacks.py --all</code>.</li>
+      <li>Show live dashboard updates on the timeline and feed.</li>
+      <li>Open Events, filter by severity = CRITICAL.</li>
+      <li>Generate the security report and export the CSV dataset.</li>
+    </ol>
+  </div>
+</section>
+
+{% endblock %}
